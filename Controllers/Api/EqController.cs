@@ -30,4 +30,40 @@ public class EqController : Controller{
 
     }
     
-}
+
+    [HttpGet("operacion")]
+    public IActionResult Operacion(){
+
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+            var filtro = Builders<Inmueble>.Filter.Eq(x => x.Operacion,"Renta");
+            var lista = collection.Find(filtro).ToList();
+            return Ok (lista);
+        }
+
+         [HttpGet("pisos")]
+    public IActionResult pisos(){
+
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+            var filtro = Builders<Inmueble>.Filter.Eq(x => x.Pisos, 0);
+            var lista = collection.Find(filtro).ToList();
+            return Ok (lista);
+        }
+
+         [HttpGet("costo")]
+    public IActionResult costo(){
+
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+            var filtro = Builders<Inmueble>.Filter.Eq(x => x.Costo, 11514);
+            var lista = collection.Find(filtro).ToList();
+            return Ok (lista);
+        }
+}    
