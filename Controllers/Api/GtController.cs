@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 [ApiController]
 [Route("api/gt")]
-public class NeController : Controller{
+public class GtController : Controller{
 
     [HttpGet("costo")]
     public IActionResult costo(){
@@ -12,30 +12,19 @@ public class NeController : Controller{
         var db = client.GetDatabase("Inmuebles");
         var collection = db.GetCollection<Inmueble>("RentasVentas");
 
-            var filtro = Builders<Inmueble>.Filter.Ne(x => x.costo,"10000");
+            var filtro = Builders<Inmueble>.Filter.Gt(x => x.Costo,10000);
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
         }
-         [HttpGet("Metrosterreno")]
-    public IActionResult metrosterreno(){
+        [HttpGet("metrosterreno")]
+    public IActionResult Metros_Terreno(){
 
         MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
         var db = client.GetDatabase("Inmuebles");
         var collection = db.GetCollection<Inmueble>("RentasVentas");
 
-            var filtro = Builders<Inmueble>.Filter.Ne(x => x.MetrosTerreno,"500");
+            var filtro = Builders<Inmueble>.Filter.Gt(x => x.Metros_Terreno,"500");
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
         }
-         [HttpGet("pisos")]
-    public IActionResult pisos(){
-
-        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
-        var db = client.GetDatabase("Inmuebles");
-        var collection = db.GetCollection<Inmueble>("RentasVentas");
-
-            var filtro = Builders<Inmueble>.Filter.Ne(x => x.pisos,"0");
-            var lista = collection.Find(filtro).ToList();
-            return Ok (lista);
-        }
-}        
+}    

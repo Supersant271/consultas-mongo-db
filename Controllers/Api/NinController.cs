@@ -3,4 +3,4 @@ using MongoDB.Driver;
 
 [ApiController]
 [Route("api/nin")]
-public class NeController : Controller
+public class NinController : Controller{}

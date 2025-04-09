@@ -3,7 +3,7 @@ using MongoDB.Driver;
 
 [ApiController]
 [Route("api/in")]
-public class NeController : Controller{
+public class InController : Controller{
     [HttpGet("listar-metros-terreno")]
     public IActionResult ListarMetrosTerreno() {
 
