@@ -3,24 +3,24 @@ using MongoDB.Driver;
 
 [ApiController]
 [Route("api/in")]
-public class InController : Controller
-{
-    [HttpGet("listar-propiedades-agencia-agente")]
-    public ActionResult ListarPropiedadesAgenciaAgente(
-        [FromQuery] string agencia,
-        [FromQuery] List<string> agentes)
-    {
-        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB); // Asumiendo que CadenasConexion.MONGO_DB es una constante con la cadena de conexión.
+public class NeController : Controller{
+    [HttpGet("listar-metros-terreno")]
+    public IActionResult ListarMetrosTerreno() {
+
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
         var db = client.GetDatabase("Inmuebles");
-        var collection = db.GetCollection<Inmueble>("RentasVentas"); // Asumiendo que Inmueble es una clase definida previamente.
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
 
-        // Obtener todas las propiedades de la agencia X y de los agentes en la lista
-        var filtroAgencia = Builders<Inmueble>.Filter.Eq(x => x.Agencia, agencia);
-        var filtroAgentes = Builders<Inmueble>.Filter.In(x => x.NombreAgente, agentes);
-        var filtroCompuesto = Builders<Inmueble>.Filter.And(filtroAgencia, filtroAgentes);
+     List<int> terreno = new List<int>();
+     terreno.Add(518);
+     terreno.Add(479);
 
-        var list = collection.Find(filtroCompuesto).ToList();
-        return Ok(list);
-    }
+     var filtroTerreno = Builders<Inmueble>.Filter.In(x => x.MetrosTerreno, terreno);
+
+     var list = collection.Find(filtroTerreno).ToList();
+
+            return Ok(list);
+        }   
+
 }
 

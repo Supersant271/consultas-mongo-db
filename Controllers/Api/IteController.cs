@@ -2,5 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
 [ApiController]
-[Route("api/nin")]
+[Route("api/Ite")]
 public class NeController : Controller
+
+       
