@@ -62,7 +62,7 @@ public class EqController : Controller{
         var db = client.GetDatabase("Inmuebles");
         var collection = db.GetCollection<Inmueble>("RentasVentas");
 
-            var filtro = Builders<Inmueble>.Filter.Eq(x => x.Costo, 11514);
+            var filtro = Builders<Inmueble>.Filter.Eq(x => x.Costo, 33421);
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
         }

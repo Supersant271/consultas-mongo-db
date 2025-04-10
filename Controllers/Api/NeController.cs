@@ -36,7 +36,7 @@ public class NeController : Controller{
         var collection = db.GetCollection<Inmueble>("RentasVentas");
 
 
-            var filtro = Builders<Inmueble>.Filter.Ne(x => x.Pisos, 3);
+            var filtro = Builders<Inmueble>.Filter.Ne(x => x.Pisos, 2);
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
         }
