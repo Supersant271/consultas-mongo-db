@@ -16,15 +16,5 @@ public class GtController : Controller{
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
         }
-        [HttpGet("metrosterreno")]
-    public IActionResult Metros_Terreno(){
-
-        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
-        var db = client.GetDatabase("Inmuebles");
-        var collection = db.GetCollection<Inmueble>("RentasVentas");
-
-            var filtro = Builders<Inmueble>.Filter.Gt(x => x.Metros_Terreno,"500");
-            var lista = collection.Find(filtro).ToList();
-            return Ok (lista);
-        }
-}    
+        
+}     

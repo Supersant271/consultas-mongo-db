@@ -2,7 +2,19 @@ using Microsoft.AspNetCore.Mvc;
 using MongoDB.Driver;
 
 [ApiController]
-[Route("api/Ite")]
-public class IteController : Controller{}
+[Route("api/Lte")]
+public class IteController : Controller{
+    [HttpGet("costo")]
+    public IActionResult Costo(){
+
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+        var filtro = Builders<Inmueble>.Filter.Lte(x => x.Costo, 50000);
+        var lista = collection.Find(filtro).ToList();
+        return Ok (lista);
+    }
+}
 
        

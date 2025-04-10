@@ -15,6 +15,17 @@ public class LtController : Controller{
         var lista = collection.Find(filtro).ToList();
         return Ok (lista);
     }
+    [HttpGet("pisos")]
+    public IActionResult Pisos(){
+
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+        var filtro = Builders<Inmueble>.Filter.Lte(x => x.Pisos, 3);
+        var lista = collection.Find(filtro).ToList();
+        return Ok (lista);
+    }
 }
 
         
