@@ -30,4 +30,20 @@ public class NinController : Controller{
         var lista = collection.Find(filtro).ToList();
         return Ok (lista);
     }
+    [HttpGet("costo")]
+    public IActionResult Costo([FromQuery]List<string> valores){
+
+        MongoClient client = new MongoClient(CadenasConexion.MONGO_DB);
+        var db = client.GetDatabase("Inmuebles");
+        var collection = db.GetCollection<Inmueble>("RentasVentas");
+
+        List<int> Costo = new List<int>();
+     Costo.Add(33421);
+     Costo.Add(1331);
+     Costo.Add(777);
+
+         var filtro = Builders<Inmueble>.Filter.Nin(x => x.Costo, valores);
+        var lista = collection.Find(filtro).ToList();
+        return Ok (lista);
+    }
 }
