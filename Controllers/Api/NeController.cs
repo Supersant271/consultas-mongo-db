@@ -16,6 +16,7 @@ public class NeController : Controller{
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
         }
+
         [HttpGet("metrosterreno")]
     public IActionResult Metros_Terreno(){
 
@@ -27,6 +28,7 @@ public class NeController : Controller{
             var lista = collection.Find(filtro).ToList();
             return Ok (lista);
         }
+        
         [HttpGet("pisos")]
     public IActionResult pisos(){
 
