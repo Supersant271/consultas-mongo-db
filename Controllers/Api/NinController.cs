@@ -43,8 +43,8 @@ public class NinController : Controller{
      Costo.Add(33421);
      Costo.Add(1331);
      Costo.Add(777);
-
-         var filtro = Builders<Inmueble>.Filter.Nin(x => x.Costo, Costo);
+     
+         var filtro = Builders<Inmueble>.Filter.Nin(x => x.Costo, valores);
         var lista = collection.Find(filtro).ToList();
         return Ok (lista);
     }
